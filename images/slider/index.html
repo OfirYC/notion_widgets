@@ -117,7 +117,7 @@
     // Get protocolName from URL query param and construct full URLs
     const protocolName = getQueryParam("protocolName") || "";
     const prefixedImageUrls = imageUrls.map(
-      (url) => (protocolName ? `${protocolName}-${url}` : url)
+      (url) => (protocolName ? `${protocolName}/${url}` : url)
     );
 
     // Dynamically assign images to slides
