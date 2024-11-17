@@ -101,17 +101,29 @@
   </div>
   <script>
     const slides = document.querySelectorAll(".slide");
-    const imageUrls = ["1.png", "2.png", "3.png"]; // Add your image URLs here
+    const imageUrls = ["1.png", "2.png", "3.png"]; // Base image file names
     const nextButton = document.getElementById("next");
     const prevButton = document.getElementById("prev");
     const auto = true;
     const intervalTime = 5000;
     let slideInterval;
 
+    // Helper function to get URL query parameter
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Get protocolName from URL query param and construct full URLs
+    const protocolName = getQueryParam("protocolName") || "";
+    const prefixedImageUrls = imageUrls.map(
+      (url) => (protocolName ? `${protocolName}/${url}` : url)
+    );
+
     // Dynamically assign images to slides
     slides.forEach((slide, index) => {
-      if (imageUrls[index]) {
-        slide.style.background = `url('${imageUrls[index]}') no-repeat center top/cover`;
+      if (prefixedImageUrls[index]) {
+        slide.style.background = `url('${prefixedImageUrls[index]}') no-repeat center top/cover`;
       }
     });
 
