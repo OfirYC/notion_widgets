@@ -92,17 +92,13 @@
   </head>
 
   <body>
-    <div class="slider">
-      <div class="slide current"></div>
-      <div class="slide"></div>
-      <div class="slide"></div>
-    </div>
+    <div class="slider"></div>
     <div class="buttons">
       <button id="prev"><i class="fas fa-arrow-left"></i></button>
       <button id="next"><i class="fas fa-arrow-right"></i></button>
     </div>
     <script>
-      const slides = document.querySelectorAll(".slide");
+      const slider = document.querySelector(".slider");
       const imageUrls = ["groups.jpg", "pnlcards.jpg"];
       const nextButton = document.getElementById("next");
       const prevButton = document.getElementById("prev");
@@ -122,12 +118,16 @@
         protocolName ? `${protocolName}/${url}` : url
       );
 
-      // Dynamically assign images to slides
-      slides.forEach((slide, index) => {
-        if (prefixedImageUrls[index]) {
-          slide.style.background = `url('${prefixedImageUrls[index]}') no-repeat center top/cover`;
-        }
+      // Dynamically create slides
+      prefixedImageUrls.forEach((url, index) => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
+        if (index === 0) slide.classList.add("current");
+        slide.style.background = `url('${url}') no-repeat center top/cover`;
+        slider.appendChild(slide);
       });
+
+      const slides = document.querySelectorAll(".slide");
 
       const nextSlide = () => {
         const current = document.querySelector(".current");
