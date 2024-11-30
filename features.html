@@ -104,7 +104,7 @@
         "charts.jpg",
         "notifications.jpg",
         "traders-tracker.jpg",
-        'batch-transactions.jpg'
+        "batch-transactions.jpg",
       ];
       const nextButton = document.getElementById("next");
       const prevButton = document.getElementById("prev");
@@ -120,7 +120,7 @@
 
       // Get protocolName from URL query param and construct full URLs
       const protocolName = getQueryParam("protocolName") || "";
-      const prefixedImageUrls = imageUrls.map((url) =>
+      const prefixedImageUrls = imageUrls.map(url =>
         protocolName ? `${protocolName}/${url}` : url
       );
 
